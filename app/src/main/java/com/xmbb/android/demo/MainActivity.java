@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 
 import com.xmbb.android.demo.aidl.AIDLServerActivity;
 
-public class MainActivity extends DemoActivity {
+public class MainActivity extends BaseActivity {
     private LinearLayout rootLayout;
 
     @Override

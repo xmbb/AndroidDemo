@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public abstract class BaseActivity<T extends BaseEnv> extends AppCompatActivity {
+public abstract class AbsBaseActivity<T extends BaseEnv> extends AppCompatActivity {
     private T env;
 
     @Override
