@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.xmbb.android.demo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix ".beta"
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    lintOptions {
+        disable "GoogleAppIndexingWarning"
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "android-${variant.buildType.name}-v${variant.versionName}.apk"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "${rootProject.ext.androidx.appcompat_v7}"
+    implementation "${rootProject.ext.androidx.constraintlayout}"
+    testImplementation "${rootProject.ext.text.junit}"
+    androidTestImplementation "${rootProject.ext.androidx.runner}"
+    androidTestImplementation "${rootProject.ext.androidx.espresso_core}"
+    implementation project(path: ":lib_base")
+}
